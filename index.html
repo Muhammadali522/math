@@ -11,59 +11,61 @@
     <div id="countdown" class="countdownScreen" style="display:none;">
         <div id="countdownText">3</div>
     </div>
-    
+
     <div class="header">
         <div>⏱ <span id="globalTimer">250</span></div>
         <div id="scoreContainer">
             ⭐ Score: <span id="score">0</span>
         </div>
         <div>🔥 Streak: <span id="streak">0</span></div>
-        
+
         <div>
             📊 Level:
             <select id="levelSelect" onchange="changeLevel()">
                 <option>Easy</option>
                 <option>Medium</option>
                 <option>Hard</option>
+                <option>ULTRA_Hard</option>
             </select>
         </div>
     </div>
-    
+
     <div id="menu" class="menu">
         <h1>Multiplication Game</h1>
         <button class="yellow" onclick="startGame()">Start</button>
-        <div style="margin-top:20px;">
+        <div style="margin-top:30px;">
             <p>Easy: 36 вопросов • Макс 360 очков</p>
             <p>Medium: 66 вопросов • Макс 660 очков</p>
             <p>Hard: 105 вопросов • Макс 1050 очков</p>
+            <p>Hard: 190 вопросов • Макс 1900 очков</p>
         </div>
     </div>
-    
+
     <div id="game" class="game" style="display:none;">
-        
+
         <div id="timerBox">⏱ 10</div>
-        
+
         <h1 id="question" class="question">---</h1>
-        
+
         <button class="yellow" onclick="showAnswer()">Answer</button>
-        
+
         <div class="bottom">
             <button class="blue" onclick="nextQuestion()">Next</button>
             <button class="blue" onclick="resetGame()">Reset</button>
         </div>
-        
+
     </div>
-    
+
     <!-- POPUP -->
     <div id="overlay" class="overlay">
         <div class="popup">
             <div id="answerBox" class="answer"></div>
-            
+
             <button class="green" onclick="correct()">Correct</button>
             <button class="red" onclick="wrong()">Wrong</button>
         </div>
     </div>
-    
+
     <script src="main.js"></script>
 </body>
 
