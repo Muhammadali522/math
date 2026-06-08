@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Math Game</title>
     <link rel="stylesheet" href="main.css">
 </head>
@@ -14,55 +15,73 @@
 
     <div class="header">
         <div>⏱ <span id="globalTimer">250</span></div>
-        <div id="scoreContainer">
-            ⭐ Score: <span id="score">0</span>
-        </div>
+        <div id="scoreContainer">⭐ Score: <span id="score">0</span></div>
         <div>🔥 Streak: <span id="streak">0</span></div>
 
-        <div>
-            📊 Level:
-            <select id="levelSelect" onchange="changeLevel()">
-                <option>Easy</option>
-                <option>Medium</option>
-                <option>Hard</option>
-                <option>ULTRA_Hard</option>
-            </select>
+        <div class="level-switcher" id="headerLevelSwitcher">
+            <div class="level-tab active" onclick="selectLevel('Easy', this)">Easy</div>
+            <div class="level-tab" onclick="selectLevel('Medium', this)">Medium</div>
+            <div class="level-tab" onclick="selectLevel('Hard', this)">Hard</div>
+            <div class="level-tab" onclick="selectLevel('ULTRA_Hard', this)">Ultra</div>
+        </div>
+
+        <div class="progress-container" id="headerProgressContainer" style="display: none;">
+            <span id="progressText">0 / 36</span>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progressBarFill">
+                    <div class="progress-ball"></div>
+                </div>
+            </div>
         </div>
     </div>
 
     <div id="menu" class="menu">
         <h1>Multiplication Game</h1>
-        <button class="yellow" onclick="startGame()">Start</button>
-        <div style="margin-top:30px;">
+        <button class="yellow start-btn" onclick="startGame()">Start</button>
+
+        <div class="menu-sub-buttons">
+            <button class="sub-btn blue" onclick="showHistory()">📜 История</button>
+            <button class="sub-btn blue" onclick="showRecords()">🏆 Рекорды</button>
+        </div>
+
+        <div class="level-info-box">
             <p>Easy: 36 вопросов • Макс 360 очков</p>
             <p>Medium: 66 вопросов • Макс 660 очков</p>
             <p>Hard: 105 вопросов • Макс 1050 очков</p>
-            <p>Hard: 190 вопросов • Макс 1900 очков</p>
+            <p>ULTRA_Hard: 190 вопросов • Макс 1900 очков</p>
         </div>
     </div>
 
     <div id="game" class="game" style="display:none;">
-
         <div id="timerBox">⏱ 10</div>
-
         <h1 id="question" class="question">---</h1>
-
-        <button class="yellow" onclick="showAnswer()">Answer</button>
-
-        <div class="bottom">
-            <button class="blue" onclick="nextQuestion()">Next</button>
-            <button class="blue" onclick="resetGame()">Reset</button>
-        </div>
-
+        <button class="yellow answer-trigger-btn" onclick="showAnswer()">Answer</button>
+        <button class="reset-btn-fixed" onclick="resetGame()">Reset</button>
     </div>
 
-    <!-- POPUP -->
     <div id="overlay" class="overlay">
         <div class="popup">
             <div id="answerBox" class="answer"></div>
+            <div class="popup-buttons-row">
+                <button class="green popup-btn" onclick="correct()">Correct</button>
+                <button class="red popup-btn" onclick="wrong()">Wrong</button>
+            </div>
+        </div>
+    </div>
 
-            <button class="green" onclick="correct()">Correct</button>
-            <button class="red" onclick="wrong()">Wrong</button>
+    <div id="historyOverlay" class="overlay">
+        <div class="popup info-popup">
+            <h2>📜 История игр</h2>
+            <div id="historyList" class="modal-scroll-list"></div>
+            <button class="red close-modal-btn" onclick="closeHistory()">Закрыть</button>
+        </div>
+    </div>
+
+    <div id="recordsOverlay" class="overlay">
+        <div class="popup info-popup">
+            <h2>🏆 Личные Рекорды</h2>
+            <div id="recordsContainer" class="records-grid"></div>
+            <button class="red close-modal-btn" onclick="closeRecords()">Закрыть</button>
         </div>
     </div>
 
